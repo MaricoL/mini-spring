@@ -1,6 +1,6 @@
 package com.mooc.zbs.web.server;
 
-import com.mooc.zbs.web.servlet.TestServlet;
+import com.mooc.zbs.web.servlet.DispatcherServlet;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.core.StandardContext;
@@ -24,9 +24,9 @@ public class TomcatServer {
         Context context = new StandardContext();
         context.setPath("");
         context.addLifecycleListener(new Tomcat.FixContextListener());
-        TestServlet testServlet = new TestServlet();
-        Tomcat.addServlet(context, "testServlet", testServlet).setAsyncSupported(true);
-        context.addServletMappingDecoded("/test", "testServlet");
+        DispatcherServlet dispatcherServlet = new DispatcherServlet();
+        Tomcat.addServlet(context, "testServlet", dispatcherServlet).setAsyncSupported(true);
+        context.addServletMappingDecoded("/", "testServlet");
         tomcat.getHost().addChild(context);
 
 
